@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AutoTrader Bot</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="header">
+        <div>
+          <h1>AutoTrader Bot</h1>
+          <p class="subtitle">Gate.io spot trading dashboard</p>
+        </div>
+        <div class="status">
+          <span id="statusDot" class="status-dot"></span>
+          <span id="statusText" class="status-text">STOPPED</span>
+        </div>
+      </header>
+
+
+
+      <section class="card">
+        <h2>Trade Config</h2>
+        <div class="grid">
+          <div class="field">
+            <label for="pair">Currency Pair</label>
+            <input id="pair" type="text" placeholder="AVL_USDT" />
+          </div>
+          <div class="field">
+            <label class="live-price-label">Live Price</label>
+            <div class="live-price-badge">
+              <span id="pairLabel" class="pair-label" style="display:none"></span>
+              <span id="priceValue" class="price-value">--</span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="buyTarget">Target Buy Price</label>
+            <input id="buyTarget" type="number" step="0.0001" placeholder="0" />
+          </div>
+          <div class="field">
+            <label for="sellTarget">Target Sell Price</label>
+            <input id="sellTarget" type="number" step="0.0001" placeholder="0" />
+          </div>
+          <div class="field">
+            <label for="amountUsdt">Amount per trade (USDT)</label>
+            <input id="amountUsdt" type="number" step="0.01" placeholder="10" />
+          </div>
+          <div class="field">
+            <label for="minAmountUsdt">Min Amount (USDT)</label>
+            <input id="minAmountUsdt" type="number" step="0.01" placeholder="5" />
+          </div>
+        </div>
+
+        <div class="field slider-field">
+          <label for="maxTrades">Max Trades <span id="maxTradesValue">10</span></label>
+          <input id="maxTrades" type="range" min="1" max="200" value="10" />
+        </div>
+
+        <div class="toggles">
+          <label class="toggle">
+            <input id="autoBuy" type="checkbox" />
+            <span class="toggle-slider green"></span>
+            <span class="toggle-label">AUTO BUY</span>
+          </label>
+          <label class="toggle">
+            <input id="autoSell" type="checkbox" />
+            <span class="toggle-slider red"></span>
+            <span class="toggle-label">AUTO SELL</span>
+          </label>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>API Credentials</h2>
+        <div class="field">
+          <label for="apiKey">API Key</label>
+          <input id="apiKey" type="password" placeholder="Gate.io API Key" />
+        </div>
+        <div class="field">
+          <label for="apiSecret">API Secret</label>
+          <input id="apiSecret" type="password" placeholder="Gate.io API Secret" />
+        </div>
+        <button id="saveKeysBtn" class="btn secondary" style="width: 100%; margin-top: 8px;">SAVE KEYS</button>
+      </section>
+
+      <section class="actions">
+        <button id="startBot" class="btn primary">START BOT</button>
+        <button id="stopBot" class="btn secondary">STOP BOT</button>
+        <div id="errorText" class="error-text"></div>
+      </section>
+
+      <section class="card">
+        <div class="log-header">
+          <h2>Trade Log</h2>
+          <div class="profit">Total Profit: <span id="totalProfit">0.0000</span> USDT</div>
+        </div>
+        <table class="trade-table">
+          <thead>
+            <tr>
+              <th>Pair</th>
+              <th>Buy</th>
+              <th>Sell</th>
+              <th>Profit</th>
+            </tr>
+          </thead>
+          <tbody id="tradeLog"></tbody>
+        </table>
+      </section>
+    </div>
+
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>

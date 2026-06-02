@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "AutoTrader Bot",
+  "version": "1.0.0",
+  "description": "Automated Gate.io spot trading bot.",
+  "permissions": ["storage", "alarms", "notifications"],
+  "host_permissions": ["https://api.gateio.ws/*", "https://api-testnet.gateapi.io/*"],
+  "background": {
+    "service_worker": "background/service-worker.js",
+    "type": "module"
+  },
+  "icons": {
+    "128": "icons/icon-128.png"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "AutoTrader Bot"
+  }
+}
